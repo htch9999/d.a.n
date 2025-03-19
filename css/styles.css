@@ -122,7 +122,7 @@ h2 {
 /* Điều chỉnh kích thước cho màn hình nhỏ */
 @media (max-width: 600px) {
     .float {
-        width: 50px;  /* Giảm kích thước xuống cho màn hình nhỏ */
-        height: 50px;
+        width: 80px;  /* Giảm kích thước xuống cho màn hình nhỏ */
+        height: 80px;
     }
 }
