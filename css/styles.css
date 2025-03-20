@@ -1,5 +1,5 @@
 body {
-    background-color: #efe6fa;
+    background-color: #a57cff;
     color: black;
     display: flex;
     justify-content: center;
@@ -42,24 +42,6 @@ h2 {
     }
 }
 
-.container {
-    text-align: center;
-}
-
-h2 {
-    font-family: 'Montserrat Alternates', sans-serif;
-    color: black;
-    margin-bottom: 20px;
-    font-size: 1.8em;
-    font-weight: 500;
-}
-
-@media (max-width: 600px) {
-    h2 {
-        font-size: 1.2em;
-    }
-}
-
 .floating-images {
     position: fixed;
     top: 0;
@@ -79,6 +61,23 @@ h2 {
     box-shadow: 0 0 10px rgba(0,0,0,0.2);
     animation: float 12s ease-in-out infinite;
     transform-origin: center center;
+}
+
+/* Điều chỉnh kích thước cho màn hình nhỏ */
+@media (max-width: 600px) {
+    .float {
+        width: 75px;  /* Tăng kích thước từ 50px lên 75px */
+        height: 75px;
+        border-width: 2px; /* Giảm độ dày viền để cân đối hơn */
+    }
+}
+
+/* Điều chỉnh thêm cho màn hình rất nhỏ */
+@media (max-width: 320px) {
+    .float {
+        width: 65px;
+        height: 65px;
+    }
 }
 
 /* Hình tròn */
@@ -119,10 +118,3 @@ h2 {
 .float:nth-child(7) { animation-delay: -5.4s; }
 .float:nth-child(8) { animation-delay: -6.1s; }
 
-/* Điều chỉnh kích thước cho màn hình nhỏ */
-@media (max-width: 600px) {
-    .float {
-        width: 80px;  /* Giảm kích thước xuống cho màn hình nhỏ */
-        height: 80px;
-    }
-}
