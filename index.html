@@ -3,10 +3,175 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Người đẹp chân ngắn</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <title>Ngủ đi người đẹp</title>
+    <!-- <link rel="stylesheet" href="css/styles.css"> -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@400;500&display=swap" rel="stylesheet">
 </head>
+
+<style>
+    body {
+        background-color: #a57cff;
+        color: black;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        font-family: 'Montserrat Alternates', sans-serif;
+        text-align: center;
+    }
+
+    #countdown {
+        font-size: 2.2em;
+        padding: 20px;
+        letter-spacing: 1px;
+        font-weight: 500;
+    }
+
+    @media (max-width: 600px) {
+        #countdown {
+            font-size: 1.4em;
+            padding: 10px;
+        }
+    }
+
+    .container {
+        text-align: center;
+    }
+
+    h2 {
+        font-family: 'Montserrat Alternates', sans-serif;
+        color: black;
+        margin-bottom: 20px;
+        font-size: 1.8em;
+        font-weight: 500;
+    }
+
+    @media (max-width: 600px) {
+        h2 {
+            font-size: 1.2em;
+        }
+    }
+
+    .floating-images {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1; /* Changed from -1 to 1 */
+    }
+
+    .float {
+        position: absolute;
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+        border: 3px solid white;
+        box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        cursor: grab;
+        user-select: none;
+        touch-action: none;
+        z-index: 2;
+        transform: translate3d(0,0,0);
+        transition: transform 0.2s cubic-bezier(0.2, 0, 0, 1),
+                    box-shadow 0.2s cubic-bezier(0.2, 0, 0, 1);
+        animation: gentleFloat 8s ease-in-out infinite;
+        will-change: transform, left, top;
+        backface-visibility: hidden;
+        perspective: 1000px;
+    }
+
+    .float:hover {
+        transform: scale(1.05);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    }
+
+    .float.dragging {
+        cursor: grabbing;
+        z-index: 9999 !important;
+        transform: translate3d(0,0,0) scale(1.15);
+        box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        transition: none;
+        animation: none !important;
+        pointer-events: none;
+    }
+
+    .float.dropping {
+        transform: translate3d(0,0,0) scale(1);
+        transition: all 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+    }
+
+    /* Điều chỉnh kích thước cho màn hình nhỏ */
+    @media (max-width: 600px) {
+        .float {
+            width: 100px;  /* Tăng kích thước từ 50px lên 75px */
+            height: 100px;
+            border-width: 2px; /* Giảm độ dày viền để cân đối hơn */
+        }
+    }
+
+    /* Hình tròn */
+    .float.circle {
+        border-radius: 50%;
+    }
+
+    /* Hình vuông */
+    .float.square {
+        border-radius: 5%;
+    }
+
+    @keyframes float {
+         0%, 100% { translate: 0 0; }
+        50% { translate: 0 20px; }
+    }
+
+    @keyframes gentleFloat {
+        0% { transform: translate(0, 0) rotate(0deg); }
+        25% { transform: translate(5px, -10px) rotate(2deg); }
+        50% { transform: translate(-5px, 5px) rotate(-2deg); }
+        75% { transform: translate(-8px, -8px) rotate(1deg); }
+        100% { transform: translate(0, 0) rotate(0deg); }
+    }
+
+    @keyframes jumpAndSpin {
+        0% { transform: translate(0, 0) rotate(0deg); }
+        25% { transform: translate(0, -30px) rotate(90deg); }
+        50% { transform: translate(0, -50px) rotate(180deg); }
+        75% { transform: translate(0, -30px) rotate(270deg); }
+        100% { transform: translate(0, 0) rotate(360deg); }
+    }
+
+    @keyframes floatHeart {
+        0% { transform: translate(0, 0) scale(1); opacity: 1; }
+        100% { transform: translate(0, -50px) scale(0.5); opacity: 0; }
+    }
+
+    .heart {
+        position: absolute;
+        color: red;
+        font-size: 20px;
+        pointer-events: none;
+        animation: floatHeart 1.5s ease-out forwards;
+    }
+
+    .jumping {
+        animation: jumpAndSpin 1s ease-in-out;
+    }
+
+    /* Animation delays với khoảng thời gian ngẫu nhiên hơn */
+    .float:nth-child(1) { animation-delay: -2.1s; }
+    .float:nth-child(2) { animation-delay: -1.7s; }
+    .float:nth-child(3) { animation-delay: -3.3s; }
+    .float:nth-child(4) { animation-delay: -4.9s; }
+    .float:nth-child(5) { animation-delay: -2.8s; }
+    .float:nth-child(6) { animation-delay: -3.7s; }
+    .float:nth-child(7) { animation-delay: -5.4s; }
+    .float:nth-child(8) { animation-delay: -6.1s; }
+
+
+</style>
+
 <body>
     <div class="floating-images">
         <img src="img/1.png" class="float" alt="floating image 1">
@@ -19,11 +184,236 @@
         <img src="img/8.png" class="float" alt="floating image 8">
     </div>
     <div class="container">
-        <h2 id="heading">Ê !</h2>
-        <h2 id="heading">Xinh thế này thì chết thôiiii </h2>
+        <h2 id="heading">Đi ngủ đi người đẹp! </h2>
         <!-- <div id="countdown"></div> -->
     </div>
-    <script src="js/countdown.js"></script>
-    <script src="js/floating.js"></script>
+    <!-- <script src="js/main.js"></script> -->
+     <script>
+        document.addEventListener('DOMContentLoaded', function() {
+        const floatImages = document.querySelectorAll('.float');
+        const shapes = ['circle', 'square'];
+        
+        // Sections configuration - Simplified to use full screen
+        const sections = {
+            desktop: { 
+                margin: 100, // pixels from screen edges
+                columns: 4,
+                rows: 2
+            },
+            mobile: {
+                margin: 50,
+                columns: 2,
+                rows: 4
+            }
+        };
+
+        // Drag state variables
+        let draggedItem = null;
+        let isDragging = false;
+        let initialX, initialY;
+        let currentX, currentY;
+
+        // Add global variable for tracking maximum z-index
+        let maxZIndex = 2;
+
+        // Countdown function
+        function updateCountdown() {
+            const targetDate = new Date('2025-05-07T00:00:00').getTime();
+            const now = new Date().getTime();
+            const timeLeft = targetDate - now;
+
+            if (timeLeft < 0) {
+                document.getElementById('countdown').innerHTML = 'Đã hết thời gian!';
+                return;
+            }
+
+            const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+            document.getElementById('countdown').innerHTML = 
+                `Còn lại ${days} ngày, ${hours} giờ, ${minutes} phút, ${seconds} giây`;
+        }
+
+        // Image positioning function - Updated for grid-like positioning
+        function positionImages() {
+            const isMobile = window.innerWidth <= 600;
+            const config = isMobile ? sections.mobile : sections.desktop;
+            const margin = config.margin;
+            
+            // Calculate available space
+            const availableWidth = window.innerWidth - (2 * margin);
+            const availableHeight = window.innerHeight - (2 * margin);
+            
+            // Calculate cell size
+            const cellWidth = availableWidth / config.columns;
+            const cellHeight = availableHeight / config.rows;
+
+            floatImages.forEach((img, index) => {
+                const randomShape = shapes[Math.floor(Math.random() * shapes.length)];
+                img.classList.remove('circle', 'square');
+                img.classList.add(randomShape);
+
+                // Calculate grid position
+                const row = Math.floor(index / config.columns);
+                const col = index % config.columns;
+                
+                // Add random offset within cell
+                const offsetX = Math.random() * (cellWidth / 2);
+                const offsetY = Math.random() * (cellHeight / 2);
+
+                // Set position
+                img.style.left = `${margin + (col * cellWidth) + offsetX}px`;
+                img.style.top = `${margin + (row * cellHeight) + offsetY}px`;
+                img.style.width = '100px';
+                img.style.height = '100px';
+                img.style.position = 'absolute';
+            });
+        }
+
+        // Drag handlers
+        function handleDragStart(e) {
+            const target = e.type === 'mousedown' ? e.target : e.touches[0].target;
+            if (target.classList.contains('float')) {
+                e.preventDefault();
+                isDragging = true;
+                draggedItem = target;
+                
+                maxZIndex += 1;
+                draggedItem.style.zIndex = maxZIndex.toString();
+                
+                const rect = draggedItem.getBoundingClientRect();
+                const startX = e.type === 'mousedown' ? e.clientX : e.touches[0].clientX;
+                const startY = e.type === 'mousedown' ? e.clientY : e.touches[0].clientY;
+                
+                initialX = startX - rect.left;
+                initialY = startY - rect.top;
+                
+                requestAnimationFrame(() => {
+                    draggedItem.classList.add('dragging');
+                    // Store current position before removing animation
+                    draggedItem._lastPosition = {
+                        left: draggedItem.style.left,
+                        top: draggedItem.style.top
+                    };
+                    draggedItem.style.animation = 'none';
+                });
+            }
+        }
+
+        function handleDrag(e) {
+            if (!isDragging || !draggedItem) return;
+            e.preventDefault();
+            
+            requestAnimationFrame(() => {
+                const moveX = e.type === 'mousemove' ? e.clientX : e.touches[0].clientX;
+                const moveY = e.type === 'mousemove' ? e.clientY : e.touches[0].clientY;
+                
+                const x = moveX - initialX;
+                const y = moveY - initialY;
+                
+                // Use transform for smoother movement
+                draggedItem.style.transform = `translate3d(${x - currentX}px, ${y - currentY}px, 0) scale(1.15)`;
+                draggedItem.style.left = `${x}px`;
+                draggedItem.style.top = `${y}px`;
+            });
+        }
+
+        function handleDragEnd() {
+            if (!isDragging || !draggedItem) return;
+            isDragging = false;
+            
+            const finalZIndex = draggedItem.style.zIndex;
+            draggedItem.classList.remove('dragging');
+            
+            const item = draggedItem;
+            
+            requestAnimationFrame(() => {
+                item.style.transform = 'translate3d(0,0,0)';
+                item.classList.add('dropping');
+                item.style.zIndex = finalZIndex;
+                
+                // First timeout: Remove dropping class
+                setTimeout(() => {
+                    if (item) {
+                        item.classList.remove('dropping');
+                        // Second timeout: Restore gentle float animation
+                        setTimeout(() => {
+                            if (item) {
+                                item.style.animation = 'gentleFloat 8s ease-in-out infinite';
+                                item.style.zIndex = finalZIndex;
+                            }
+                        }, 2000); // Wait 2 seconds before restoring animation
+                    }
+                }, 300);
+            });
+            
+            draggedItem = null;
+        }
+
+        // Event listeners
+        floatImages.forEach(img => {
+            img.draggable = false;
+            img.addEventListener('mousedown', handleDragStart);
+            img.addEventListener('touchstart', handleDragStart, { passive: false });
+        });
+
+        document.addEventListener('mousemove', handleDrag);
+        document.addEventListener('mouseup', handleDragEnd);
+        document.addEventListener('touchmove', handleDrag, { passive: false });
+        document.addEventListener('touchend', handleDragEnd);
+        document.addEventListener('touchcancel', handleDragEnd);
+
+        // Function to create and animate heart
+        function createHeart(element) {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.innerHTML = '❤';
+            heart.style.left = `${parseInt(element.style.left) + element.offsetWidth/2}px`;
+            heart.style.top = `${parseInt(element.style.top)}px`;
+            document.body.appendChild(heart);
+            
+            // Remove heart after animation
+            setTimeout(() => heart.remove(), 1500);
+        }
+
+        // Function to handle random animations
+        function triggerRandomAnimations() {
+            floatImages.forEach(img => {
+                if (!img.classList.contains('dragging')) {
+                    // 20% chance for jump and spin
+                    if (Math.random() < 0.2) {
+                        const originalAnimation = img.style.animation;
+                        img.classList.add('jumping');
+                        setTimeout(() => {
+                            img.classList.remove('jumping');
+                        }, 1000);
+                    }
+                    
+                    // 30% chance for heart
+                    if (Math.random() < 0.3) {
+                        createHeart(img);
+                    }
+                }
+            });
+        }
+
+        // Trigger animations check every minute
+        setInterval(triggerRandomAnimations, 60000);
+
+        // Window resize handler
+        let resizeTimer;
+        /*window.addEventListener('resize', () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(positionImages, 250);
+        });*/
+
+        // Initialize
+        positionImages();
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+    });
+     </script>
 </body>
 </html>
