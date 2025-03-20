@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"="width=device-width, initial-scale=1.0">
-    <title>❤️❤️</title>
+    <title></title>
     <!-- <link rel="stylesheet" href="css/styles.css"> -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@400;500&display=swap" rel="stylesheet">
 </head>
@@ -216,7 +216,7 @@
         <img src="img/10.png" class="float" alt="floating image 10">
     </div>
     <div class="container">
-        <h2 id="heading">Đi ngủ đi người đẹp ❤️</h2>
+        <h2 id="heading">Đi ngủ đi người đẹp! </h2>
         <!-- <div id="countdown"></div> -->
     </div>
     <!-- <script src="js/main.js"></script> -->
@@ -246,23 +246,23 @@
 
         // Countdown function
         function updateCountdown() {
-            const targetDate = new Date('2025-05-07T00:00:00').getTime();
-            const now = new Date().getTime();
-            const timeLeft = targetDate - now;
+        const targetDate = new Date('2025-05-07T00:00:00').getTime();
+        const now = new Date().getTime();
+        const timeLeft = targetDate - now;
 
-            if (timeLeft < 0) {
-                document.getElementById('countdown').innerHTML = 'Đã hết thời gian!';
-                return;
-            }
-
-            const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
-
-            document.getElementById('countdown').innerHTML = 
-                `Còn lại ${days} ngày, ${hours} giờ, ${minutes} phút, ${seconds} giây`;
+        if (timeLeft < 0) {
+            document.title = 'CHÚC MỪNG SINH NHẬTTT!';
+            return;
         }
+
+        const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+        // Update page title
+        document.title = ` ${days} ngày, ${hours} giờ, ${minutes} phút, ${seconds} giây`;
+    }
 
         // Image positioning function - Updated for grid-like positioning
         function positionImages() {
