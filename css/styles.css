@@ -66,8 +66,8 @@ h2 {
 /* Điều chỉnh kích thước cho màn hình nhỏ */
 @media (max-width: 600px) {
     .float {
-        width: 75px;  /* Tăng kích thước từ 50px lên 75px */
-        height: 75px;
+        width: 100px;  /* Tăng kích thước từ 50px lên 75px */
+        height: 100px;
         border-width: 2px; /* Giảm độ dày viền để cân đối hơn */
     }
 }
@@ -75,8 +75,8 @@ h2 {
 /* Điều chỉnh thêm cho màn hình rất nhỏ */
 @media (max-width: 320px) {
     .float {
-        width: 65px;
-        height: 65px;
+        width: 75px;
+        height: 75px;
     }
 }
 
