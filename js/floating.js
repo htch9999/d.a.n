@@ -1,60 +1,112 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const floatImages = document.querySelectorAll('.float');
-    const shapes = ['circle', 'square'];
-    
-    // Định nghĩa sections cho desktop và mobile
-    const sections = {
-        desktop: [
-            { x: [0, 25], y: [0, 30] },     // Top left
-            { x: [75, 100], y: [0, 30] },   // Top right
-            { x: [0, 25], y: [70, 100] },   // Bottom left
-            { x: [75, 100], y: [70, 100] }, // Bottom right
-            { x: [0, 20], y: [35, 65] },    // Middle left
-            { x: [80, 100], y: [35, 65] },  // Middle right
-        ],
-        mobile: [
-            { x: [0, 30], y: [0, 20] },     // Top
-            { x: [0, 30], y: [80, 100] },   // Bottom
-            { x: [70, 100], y: [0, 20] },   // Top right
-            { x: [70, 100], y: [80, 100] }, // Bottom right
-        ]
-    };
+body {
+    background-color: #a57cff;
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: 'Montserrat Alternates', sans-serif;
+    text-align: center;
+}
 
-    function positionImages() {
-        const isMobile = window.innerWidth <= 600;
-        const currentSections = isMobile ? sections.mobile : sections.desktop;
-        const baseSize = isMobile ? 50 : 90; // Smaller base size for mobile
-        const sizeVariation = isMobile ? 10 : 20; // Less variation for mobile
+#countdown {
+    font-size: 2.2em;
+    padding: 20px;
+    letter-spacing: 1px;
+    font-weight: 500;
+}
 
-        floatImages.forEach((img, index) => {
-            // Chọn hình dạng ngẫu nhiên
-            const randomShape = shapes[Math.floor(Math.random() * shapes.length)];
-            img.classList.remove('circle', 'square');
-            img.classList.add(randomShape);
-
-            // Chọn section và tính vị trí
-            const section = currentSections[index % currentSections.length];
-            const randomX = section.x[0] + Math.random() * (section.x[1] - section.x[0]);
-            const randomY = section.y[0] + Math.random() * (section.y[1] - section.y[0]);
-
-            // Tính kích thước phù hợp với thiết bị
-            const randomSize = baseSize + Math.random() * sizeVariation;
-            
-            // Áp dụng các thuộc tính
-            img.style.width = `${randomSize}px`;
-            img.style.height = `${randomSize}px`;
-            img.style.left = `${randomX}%`;
-            img.style.top = `${randomY}%`;
-        });
+@media (max-width: 600px) {
+    #countdown {
+        font-size: 1.4em;
+        padding: 10px;
     }
+}
 
-    // Chạy lần đầu
-    positionImages();
+.container {
+    text-align: center;
+}
 
-    // Cập nhật khi thay đổi kích thước màn hình
-    let resizeTimer;
-    window.addEventListener('resize', () => {
-        clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(positionImages, 250);
-    });
-});
+h2 {
+    font-family: 'Montserrat Alternates', sans-serif;
+    color: black;
+    margin-bottom: 20px;
+    font-size: 1.8em;
+    font-weight: 500;
+}
+
+@media (max-width: 600px) {
+    h2 {
+        font-size: 1.2em;
+    }
+}
+
+.floating-images {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.float {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border: 3px solid white;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    animation: float 12s ease-in-out infinite;
+    transform-origin: center center;
+}
+
+/* Điều chỉnh kích thước cho màn hình nhỏ */
+@media (max-width: 600px) {
+    .float {
+        width: 100px;  /* Tăng kích thước từ 50px lên 75px */
+        height: 100px;
+        border-width: 2px; /* Giảm độ dày viền để cân đối hơn */
+    }
+}
+
+/* Hình tròn */
+.float.circle {
+    border-radius: 50%;
+}
+
+/* Hình vuông */
+.float.square {
+    border-radius: 5%;
+}
+
+@keyframes float {
+    0% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+    25% {
+        transform: translate(15px, -15px) rotate(5deg);
+    }
+    50% {
+        transform: translate(0, 20px) rotate(0deg);
+    }
+    75% {
+        transform: translate(-15px, -10px) rotate(-5deg);
+    }
+    100% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+}
+
+/* Animation delays với khoảng thời gian ngẫu nhiên hơn */
+.float:nth-child(1) { animation-delay: -2.1s; }
+.float:nth-child(2) { animation-delay: -1.7s; }
+.float:nth-child(3) { animation-delay: -3.3s; }
+.float:nth-child(4) { animation-delay: -4.9s; }
+.float:nth-child(5) { animation-delay: -2.8s; }
+.float:nth-child(6) { animation-delay: -3.7s; }
+.float:nth-child(7) { animation-delay: -5.4s; }
+.float:nth-child(8) { animation-delay: -6.1s; }
+
